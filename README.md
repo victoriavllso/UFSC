@@ -9,5 +9,5 @@ Este repositório abriga os códigos e projetos que desenvolvi ao longo do meu c
 | EEL5105 | [Circuitos e Técnicas Digitais](https://github.com/victoriavllso/Circuitos-e-tecnicas-digitais) | **1º Semestre** - 23.1 | [Genius - FPGA](https://github.com/victoriavllso/Circuitos-e-tecnicas-digitais/tree/main/GENIUS)
 | INE5404 | [Programação Orientada a Objetos II]| **2º Semestre** - 23.2 |  |
 | INE5406 | [Sistemas Digitais]| **2º Semestre** - 23.2 |  |
-
+| INE5202 | [Cálculo numérico em computadores](https://github.com/victoriavllso/UFSC/tree/main/C%C3%A1lculo%20num%C3%A9rico%20em%20computadores) | **3º Semestre** - 23.1 | 
 
