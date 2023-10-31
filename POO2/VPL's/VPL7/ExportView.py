@@ -2,8 +2,8 @@ import PySimpleGUI as sg
 from View import*
 
 class ExportView(View):
-    def __init__(self, title, controlador):
-        super().__init__(title, controlador)
+    def __init__(self, title):
+        super().__init__(title)
 
     def tela_consulta(self):
         linha0 = [sg.Text('Digite o nome arquivo que será salvo: ')]

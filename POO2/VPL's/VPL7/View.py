@@ -3,8 +3,7 @@ from abc import ABC, abstractmethod
 
 # View do padrão MVC
 class View(ABC):
-    def __init__(self, title, controlador):
-        self.__controlador = controlador
+    def __init__(self, title):
         self.__title = title
         self.__container = []
         self.__window = None

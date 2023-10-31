@@ -6,8 +6,8 @@ import os
 import tempfile
 
 class GraficoView(View):
-    def __init__(self, title, controlador):
-        super().__init__(title, controlador)
+    def __init__(self, title):
+        super().__init__(title)
 
     def tela_consulta(self):
             tipos_graficos = ["Barras", "Pizza", "Dispersão"]
@@ -42,34 +42,3 @@ class GraficoView(View):
             sg.popup(f'Gráfico de Pizza', image=temp_file_path)
 
               
-
-
-'''
-regiao_exemplo = Regiao("Região A")
-regiao_exemplo.registrar_votos("Candidato A", 30)
-regiao_exemplo.registrar_votos("Candidato B", 45)
-regiao_exemplo.registrar_votos("Candidato C", 15)
-regiao_exemplo.registrar_votos("Candidato D", 10)
-
-# Classe GraficoView
-grafico_view = GraficoView("Gráfico Eleitoral", None)  # Certifique-se de ter uma instância de controlador
-grafico_view.tela_consulta()
-# Teste a criação de um gráfico de barras
-#grafico_view.exibir_grafico("Barras", regiao_exemplo)
-
-# Teste a criação de um gráfico de pizza
-grafico_view.exibir_grafico("Pizza", regiao_exemplo)
-'''
-
-
-grafico_view = GraficoView("Sistema view", None)
-grafico_view.tela_consulta()
-while True:
-    event, values = grafico_view.le_eventos()
-    if event == sg.WIN_CLOSED:
-        break
-    elif event == 'Confirmar':
-        tipo_grafico = values['-TIPO-']
-        grafico_view.exibir_grafico(tipo_grafico, regiao_exemplo)  # Altere regiao_exemplo para os seus dados
-
-grafico_view.window.close()

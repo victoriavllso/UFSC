@@ -13,7 +13,9 @@ class DAO(ABC):
             self.__dump()  # Se o arquivo não existe, cria um arquivo vazio
 
     def __dump(self):
-        pickle.dump(self.cache, open(self.datasource, 'wb'))
+        arquivo = open(self.datasource, 'wb')
+        pickle.dump(self.cache, arquivo)
+        arquivo.close()
 
     def __load(self):
         self.cache = pickle.load(open(self.datasource, 'rb'))
@@ -39,3 +41,10 @@ class DAO(ABC):
 
     def get_all(self):
         return list(self.cache.values())  # Retorna todos os objetos no cache como uma lista
+
+    def set_data_source(self, caminho: str):
+        if '.pkl' not in caminho:
+            caminho += '.pkl'
+        arquivo = open(caminho, 'wb')
+        pickle.dump(self.cache, arquivo)
+        arquivo.close()
