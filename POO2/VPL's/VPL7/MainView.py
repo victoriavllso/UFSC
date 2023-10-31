@@ -9,7 +9,7 @@ class MainView(View):
         linha0 = [sg.Text('Digite os dados para cadastro: ')]
         linha1 = [sg.Text('Região'), sg.InputText('', key = 'regiao')]
         linha2 = [sg.Text('Candidato'), sg.InputText('', key = 'candidato')]
-        linha3 = [sg.Text('Quantidade de votos'), sg.InputText('', key = 'quantidade_votos')]
+        linha3 = [sg.Text('Quantidade de votos'), sg.InputText('', key = 'votos')]
         linha4 = [sg.Button('Cadastrar'), sg.Button('Consultar'), sg.Button('Remover')]
         linha5 = [sg.Button('Exportar'), sg.Button('Importar'), sg.Button('Visualizar gráficos')]
 

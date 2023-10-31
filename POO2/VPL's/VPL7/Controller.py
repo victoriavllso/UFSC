@@ -26,19 +26,36 @@ class Controller:
             exportacao_ativada = False
 
         return exportacao_ativada
+    
+    def cadastro(self, regiao: Regiao, candidato, votos):
+        reg = regiao.registrar_votos(candidato, votos)
+        self.__regiaoDAO.add(reg)
+        return 'Região adicionada com sucesso !'
+    
+
+    def busca_candidato(self):
+        
+
 
     def inicia(self):
 
-        tela_inicial = self.__telaPrincipal.tela_consulta()
-
+    
         rodando = True
 
 
 
         while rodando:
+            event, values = self.__telaPrincipal.le_eventos()
 
-            if event == 'Exportar':
-                self.__telaExport.tela_consulta()
+            if event == 'Cadastrar':
+                regiao = str(values['regiao'])
+                candidato = str(values['candidato'])
+                votos = int(values['votos'])
+                resultado = self.cadastro(regiao,candidato,votos)
+
+            elif event == 'Consultar':
+                candidato = self.__regiaoDAO.get(candidato)
+                
 
 
 
