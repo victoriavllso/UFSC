@@ -26,7 +26,8 @@ class GraficoView(View):
             self.update_layout(self.__container)
 
     def exibir_grafico(self, tipo_grafico, regiao):
-        candidatos = self.dao.get_nomes()
+        #candidatos = self.dao.get_nomes(regiao)
+        candidatos = self.dao.get_nomes(regiao)
         votos = self.dao.get_votos_todos(regiao)
         if tipo_grafico == 'Barras':
             plt.bar(candidatos, votos)

@@ -46,9 +46,9 @@ class CandidatoDAO(DAO):
             votos_todos.append(votos)
         return votos_todos
 
-    def get_nomes(self):
+    def get_nomes(self, regiao):
         nomes = []
         for candidado in self.cache:
-            nomes.append(self.cache.keys())
-
+            if candidado in regiao:
+                nomes.append(self.cache.keys())
         return nomes

@@ -74,8 +74,6 @@ class Controller:
                         if evento == 'Confirmar':
                             estado_consulta = values['estado']
                             tipo = valores['tipos_graficos']
-                            votos = self.__candidatoDAO.get_votos_todos(estado_consulta)
-                            print(votos)
                             self.__telaGrafico.exibir_grafico(tipo, estado_consulta)
                     
 
