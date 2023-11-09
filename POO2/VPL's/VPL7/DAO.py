@@ -1,5 +1,6 @@
 from abc import ABC
 import pickle
+import sys
 
 class DAO(ABC):
     def __init__(self, datasource=''):
@@ -10,9 +11,9 @@ class DAO(ABC):
             self.__load()  # Tentativa de carregar os dados do arquivo
 
         except FileNotFoundError:
-            self.__dump()  # Se o arquivo não existe, cria um arquivo vazio
+            self.dump()  # Se o arquivo não existe, cria um arquivo vazio
 
-    def __dump(self):
+    def dump(self):
         arquivo = open(self.datasource, 'wb')
         pickle.dump(self.cache, arquivo)
         arquivo.close()
@@ -22,29 +23,33 @@ class DAO(ABC):
 
     def add(self, key, obj):
         self.cache[key] = obj  # Adiciona um objeto ao cache
-        self.__dump()  # Salva o cache atualizado no arquivo
+        self.dump()  # Salva o cache atualizado no arquivo
 
-    def get(self, key):
-        try:
-            return self.cache[key]  # Obtém um objeto pela seu chave
-        except KeyError:
-            print('Chave não encontrada', f = sys.stderr)  # Se a chave não existe no cache, retorna None
-            raise KeyError #KeyError é "relançada" para que possa ser tratada em um nível superior do código.
-   
-    def remove(self, key):
+
+    def remove(self, key, obj):
         try:
             self.cache.pop(key)  # Remove um objeto pelo sua chave
-            self.__dump()  # Salva o cache atualizado no arquivo
+            self.dump()  # Salva o cache atualizado no arquivo
             return True
         except KeyError:
             raise  # Se a chave não existe no cache, levanta uma exceção
 
     def get_all(self):
-        return list(self.cache.values())  # Retorna todos os objetos no cache como uma lista
+        return self.cache
 
-    def set_data_source(self, caminho: str):
+
+    def export_source(self, caminho: str):
         if '.pkl' not in caminho:
             caminho += '.pkl'
-        arquivo = open(caminho, 'wb')
-        pickle.dump(self.cache, arquivo)
+        arquivo = open(caminho, 'wb') #abre um arquivo e na linha abaixo salva o objeto cache nesse arquivo
+        pickle.dump(self.cache, arquivo) #serializa (pega o objeto python e passa p binário)
         arquivo.close()
+
+    def import_source(self, caminho: str):
+        arquivo = open(caminho, 'rb')
+        objeto = pickle.load(arquivo) #dessserializar (pegar em binário e traz de volta p obj python)
+        arquivo.close()
+        for regiao, votos in objeto.items():
+            self.cache[regiao] = votos
+
+        self.dump

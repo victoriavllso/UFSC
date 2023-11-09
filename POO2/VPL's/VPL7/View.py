@@ -1,5 +1,6 @@
-import PySimpleGUI as sg 
+import PySimpleGUI as sg
 from abc import ABC, abstractmethod
+from CandidatoDAO import*
 
 # View do padrão MVC
 class View(ABC):
@@ -7,7 +8,10 @@ class View(ABC):
         self.__title = title
         self.__container = []
         self.__window = None
+        self.dao =  CandidatoDAO()
+        self.lista_candidatos = self.dao.get_all()
 
+        sg.theme('Reds')
     @abstractmethod
     def tela_consulta(self):
         pass
@@ -17,10 +21,10 @@ class View(ABC):
         return self.__window
 
     def update_layout(self, layout):
-        self.__window = sg.Window(self.__title, layout, font=('Helvetica', 14), button_color=('pink', 'white'))
+        self.__window = sg.Window(self.__title, layout, font=('Helvetica', 14), button_color=('brown', 'white'))
 
     def le_eventos(self):
         return self.__window.read()
-
+    
     def fim(self):
-        self.__window.close()
+        self.__window.close() 

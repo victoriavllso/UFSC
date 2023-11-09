@@ -1,17 +1,38 @@
 import PySimpleGUI as sg
 from View import*
+from utils import*
+from CandidatoDAO import*
 
 class MainView(View):
-    def __init__(self, title):
-        super().__init__(title)
+    def __init__(self):
+        super().__init__(title = "Sistema de votação")
+
+        
+
 
     def tela_consulta(self):
-        linha0 = [sg.Text('Digite os dados para cadastro: ')]
-        linha1 = [sg.Text('Região'), sg.InputText('', key = 'regiao')]
-        linha2 = [sg.Text('Candidato'), sg.InputText('', key = 'candidato')]
-        linha3 = [sg.Text('Quantidade de votos'), sg.InputText('', key = 'votos')]
-        linha4 = [sg.Button('Cadastrar'), sg.Button('Consultar'), sg.Button('Remover')]
-        linha5 = [sg.Button('Exportar'), sg.Button('Importar'), sg.Button('Visualizar gráficos')]
+        nomes_candidatos = list(self.lista_candidatos.keys())
+        #votos = self.lista_candidatos['nome'].resultado_parcial['regiao']
+    
 
-        self.__container = [linha0, linha1, linha2, linha3, linha4, linha5]
-        self.update_layout(self.__container)
+        layout = [
+            [sg.Text('Dados para Cadastro ou consulta de Votos:')],
+            [sg.Text(''), sg.Text(''), sg.Text('')],
+            [sg.Text('Estado:'), sg.InputOptionMenu(values=estados, key='estado')],
+            [sg.Text('Candidato:'), sg.InputCombo(values=nomes_candidatos, key='candidato', size=(15, 15))],
+            [sg.Text('Quantidade de votos:'), sg.InputText('', key='votos', size=(10, 10))],
+            [sg.Text(''), sg.Text(''), sg.Text('')],
+            [sg.Text('Resultado')],
+            [sg.InputText('', key='resultado')],
+            [sg.Text(''), sg.Text(''), sg.Text('')],
+            [sg.Button('Cadastrar'), sg.Button('Consultar'), sg.Button('Remover'), sg.Button('Exportar'), sg.Button('Importar'), sg.Button('Visualizar gráficos')]
+        ]
+
+        self.update_layout(layout)
+
+
+    def mostra_resultado(self, resultado):
+        self.window.Element('resultado').Update(resultado)
+        
+    def limpar(self):
+        self.window.Element('resultado').Update('')
