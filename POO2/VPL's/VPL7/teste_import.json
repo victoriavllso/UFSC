@@ -1,0 +1,22 @@
+[
+  {
+    "candidato": "Ramon Dino",
+    "votos": {
+      "SC": 1232,
+      "AC": 211233
+    }
+  },
+  {
+    "candidato": "Manoel Gomes",
+    "votos": {
+      "SC": 124,
+      "AC": 3322
+    }
+  },
+  {
+    "candidato": "Baianinho de Mauá",
+    "votos": {
+      "PR": 0
+    }
+  }
+]

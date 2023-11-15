@@ -1,3 +1,4 @@
+from EventManager import *
 from DAO import*
 from Candidato import*
 import pickle
@@ -5,8 +6,7 @@ import pickle
 class CandidatoDAO(DAO):
     def __init__(self):
         super().__init__('região.pkl')
-
-
+        self.events = EventManager()
 
     def add(self, nome: str, regiao: str, votos: int):
         candidato = self.cache.get(nome)
@@ -25,15 +25,7 @@ class CandidatoDAO(DAO):
             candidato.resultado_parcial[regiao] = votos
 
         self.dump()  # Salva o cache atualizado
-
-
-
-    def get_votos_regiao(self, nome_candidato, regiao):
-        candidato = self.cache.get(nome_candidato)
-        if candidato is not None:
-            return candidato.resultado_parcial.get(regiao)
-        else:
-            return 0
+        
     def remove(self, nome_candidato, regiao):
         candidato = self.cache.get(nome_candidato)
         if candidato is not None:
@@ -42,13 +34,31 @@ class CandidatoDAO(DAO):
     def get_votos_todos(self, regiao):
         votos_todos = []
         for candidato in self.cache.values():
-            votos = candidato.resultado_parcial.get(regiao)
+            if regiao != "":
+                votos = candidato.resultado_parcial.get(regiao)
+                votos = votos if votos != None else 0
+            else:
+                votos = candidato.calcular_votos()
             votos_todos.append(votos)
+            
         return votos_todos
-
-    def get_nomes(self, regiao):
+    
+    def get_votos_candidato(self, nome, regiao=""):
+        resultado = {}
+        
+        candidato = self.cache.get(nome)
+        
+        if regiao != "":
+            resultado[regiao] = candidato.resultado_parcial.get(regiao)
+            resultado[regiao] = resultado[regiao] if resultado[regiao] != None else 0
+        else:
+            resultado = candidato.resultado_parcial
+            
+        return resultado
+    
+    def get_nomes(self):
         nomes = []
-        for candidado in self.cache:
-            if candidado in regiao:
-                nomes.append(self.cache.keys())
+        for candidato in self.cache:
+            nomes.append(str(candidato))
         return nomes
+

@@ -3,10 +3,6 @@ class Candidato():
         self.__nome = nome
         self.__resultado_parcial = {}
 
-    
-
-
-
     @property
     def resultado_parcial(self):
         return self.__resultado_parcial
@@ -23,6 +19,14 @@ class Candidato():
         else:
             self.resultado_parcial[regiao] = votos
             return self.resultado_parcial
+        
+    def calcular_votos(self):
+        votos = 0
+        
+        for v in self.resultado_parcial.keys():
+            votos += self.resultado_parcial[v]
+        
+        return votos
         
 
     def __str__(self) -> str:
