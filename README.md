@@ -5,9 +5,9 @@ Este repositório abriga os códigos e projetos que desenvolvi ao longo do meu c
 
 | Código  | Disciplina                | Semestre | Trabalho Final |
 | ------  | :-----------------------: | :--------: | :-------------: |
-| INE5402 | Programação Orientada a Objetos I | **1º Semestre** - 23.1 | [Flappy bird](https://github.com/victoriavllso/flappy-bird) |
+| INE5402 | [Programação Orientada a Objetos I](https://github.com/victoriavllso/questoes-URI) | **1º Semestre** - 23.1 | [Flappy bird](https://github.com/victoriavllso/flappy-bird) |
 | EEL5105 | [Circuitos e Técnicas Digitais](https://github.com/victoriavllso/UFSC/tree/main/Circuitos%20e%20tecnicas%20digitais) | **1º Semestre** - 23.1 | [Genius - FPGA](https://github.com/victoriavllso/UFSC/tree/main/Circuitos%20e%20tecnicas%20digitais/GENIUS)
-| INE5404 | [Programação Orientada a Objetos II](https://github.com/victoriavllso/UFSC/tree/main/POO2)| **2º Semestre** - 23.2 |  |
+| INE5404 | [Programação Orientada a Objetos II](https://github.com/victoriavllso/UFSC/tree/main/POO2)| **2º Semestre** - 23.2 | [MazeGame](https://github.com/INE-UFSC/projeto-final-grupo-4-23-2)  |
 | INE5406 | [Sistemas Digitais](https://github.com/victoriavllso/UFSC/tree/main/Sistemas%20Digitais)| **2º Semestre** - 23.2 | Módulo de convolução - filtro gaussiano |
-| INE5202 | [Cálculo numérico em computadores](https://github.com/victoriavllso/UFSC/tree/main/C%C3%A1lculo%20num%C3%A9rico%20em%20computadores) | **2º Semestre** - 23.1 | 
+| INE5202 | [Cálculo numérico em computadores](https://github.com/victoriavllso/UFSC/tree/main/C%C3%A1lculo%20num%C3%A9rico%20em%20computadores) | **2º Semestre** - 23.2 | 
 
