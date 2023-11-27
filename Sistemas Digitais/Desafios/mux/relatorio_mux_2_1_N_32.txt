@@ -1,0 +1,17 @@
+--------------- dados do aluno ---------------
+nome: Pedro Henrique Gimenez e Victória Rodrigues Veloso
+matricula: 23102766 e 23100460
+--------------- dados do fpga ----------------
+familia: Cyclone III
+dispositivo: EP3C5E144C7
+-------- dados de utilizacao da placa --------
+total combinational functions: 33 / 5,136 ( < 1 % )
+dedicates logic registers: 0 / 5,136 ( 0 % )
+total pins: 97 / 95 ( 102 % )
+-------------- dados de atraso ---------------
+input port: 
+output port: 
+atraso (ns): 
+tipo do atraso:
+
+Não foi possível compilar o multiplexadoe de 32 bits com a mesma FPGA que os multiplexadores de 8 e 16 bit, pois a quantidade de pinos exigida é maior do que a fornecida (97 / 95)
