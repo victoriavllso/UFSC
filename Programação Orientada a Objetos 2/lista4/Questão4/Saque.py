@@ -5,5 +5,9 @@ class Saque(Transacao):
         super().__init__(conta_origem, conta_destino, valor_transacao)
 
     def processamento(self):
-        self.conta_origem -= self.valor_transacao
-        return self.conta_origem
+        if self.conta_origem.saldo_atual >= self.valor_transacao:
+            self.conta_origem.saldo_atual -= self.valor_transacao
+            return self.valor_transacao
+
+        else:
+            print('Saldo insuficiente para saque')
