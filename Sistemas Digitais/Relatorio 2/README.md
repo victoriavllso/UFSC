@@ -19,16 +19,18 @@ Para a simulação, foi necessário ajustar o valor padrão da duração da exec
 Durante esses ciclos, os valores de entrada foram somados. No primeiro ciclo, ocorreram 64 iterações, em que os 5 primeiros valores de estímulo foram somados. No entanto, é importante observar que esses valores de estímulo foram fornecidos antes do final do primeiro ciclo de 2000 ns. Além disso, o último valor de entrada, representado como 00000000, foi forçado como entrada até o término do ciclo.
 No segundo ciclo, ocorreram novamente 64 iterações, mas, desta vez, o valor de entrada foi 11111111, pois foi configurado para ser inserido após 2040 ns, ou seja, após o final do primeiro ciclo. Como resultado desses ciclos, as saídas observadas foram 00000001110101 e 11111111000000.
 
-<br>
+
 
 <div style="text-align: center;">
-    <img src="./imagens/simulacao v1.png" width="80%">
-    <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 1: Simulação da SAD V1</p>
+    <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 2: Configuração Default Run para a SAD V1</p>
+    <img src="https://github.com/victoriavllso/sistemas-digitais/blob/e797414d8c289b1c59cb0abcbb18fc74f5bd7caf/imagens/Captura%20de%20tela%202023-10-17%20191622.png" width="80%">
 </div>
 <br>
+<br>
+<br>
 <div style="text-align: center;">
-    <img src="./imagens/tempo de run.png" width="80%">
-    <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 2: Configuração Default Run para a SAD V1</p>
+    <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 1: Simulação da SAD V1</p>
+    <img src="https://github.com/victoriavllso/sistemas-digitais/blob/main/imagens/Captura%20de%20tela%202023-10-17%20153211.png" width="80%">
 </div>
 
 <br>
@@ -42,11 +44,13 @@ Para a construção do circuito da SAD V3, o mesmo esquema foi utilizado. Uma an
 
 
 <div style="text-align: center;">
-    <img src="./imagens/atraso v3.png" width="80%">
     <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 3: Atraso SAD V3</p>
+    <img src="" width="80%">
 </div>
 <br>
+<br>
+<br>
 <div style="text-align: center;">
-    <img src="./imagens/resultados v3.png" width="80%">
     <p style="text-align: center; font-style: italic; font-size: 12px;">Figura 4: Resultado SAD V3</p>
+    <img src="" width="80%">
 </div>
