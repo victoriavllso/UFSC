@@ -1,0 +1,14 @@
+
+State Machine - |topo|controle:control_e|estadoatual
+Name estadoatual.S8 estadoatual.S7 estadoatual.S6 estadoatual.S5A estadoatual.S5 estadoatual.S4 estadoatual.S3 estadoatual.S2A estadoatual.S2 estadoatual.S1 estadoatual.S0 
+estadoatual.S0 0 0 0 0 0 0 0 0 0 0 0 
+estadoatual.S1 0 0 0 0 0 0 0 0 0 1 1 
+estadoatual.S2 0 0 0 0 0 0 0 0 1 0 1 
+estadoatual.S2A 0 0 0 0 0 0 0 1 0 0 1 
+estadoatual.S3 0 0 0 0 0 0 1 0 0 0 1 
+estadoatual.S4 0 0 0 0 0 1 0 0 0 0 1 
+estadoatual.S5 0 0 0 0 1 0 0 0 0 0 1 
+estadoatual.S5A 0 0 0 1 0 0 0 0 0 0 1 
+estadoatual.S6 0 0 1 0 0 0 0 0 0 0 1 
+estadoatual.S7 0 1 0 0 0 0 0 0 0 0 1 
+estadoatual.S8 1 0 0 0 0 0 0 0 0 0 1 
