@@ -11,7 +11,7 @@ Dentro da disciplina de sistemas digitais, foi construído um circuito para apli
 </p>
 <br>
 <br>
-<p>
+##
 <p align="center">
   <img src="https://github.com/victoriavllso/UFSC/assets/128431650/1c88d4c2-5915-4d0a-93e1-a476404fa012" width="600" alt="Descrição do topo">
 </p>
