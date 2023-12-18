@@ -5,7 +5,7 @@ Este repositório abriga os códigos e projetos que desenvolvi ao longo do meu c
 
 | Código  | Disciplina                | Semestre | Trabalho Final |
 | ------  | :-----------------------: | :--------: | :-------------: |
-| INE5402 | [Programação Orientada a Objetos I](https://github.com/victoriavllso/questoes-URI) | **1º Semestre** - 23.1 | [Flappy bird](https://github.com/victoriavllso/flappy-bird) |
+| INE5402 | [Programação Orientada a Objetos I](https://github.com/victoriavllso/UFSC/tree/main/Programa%C3%A7%C3%A3o%20Orientada%20a%20Objetos%201) | **1º Semestre** - 23.1 | [Flappy bird](https://github.com/victoriavllso/flappy-bird) |
 | EEL5105 | [Circuitos e Técnicas Digitais](https://github.com/victoriavllso/UFSC/tree/main/Circuitos%20e%20tecnicas%20digitais) | **1º Semestre** - 23.1 | [Genius - FPGA](https://github.com/victoriavllso/UFSC/tree/main/Circuitos%20e%20tecnicas%20digitais/GENIUS)
 | INE5404 | [Programação Orientada a Objetos II](https://github.com/victoriavllso/UFSC/tree/main/Programa%C3%A7%C3%A3o%20Orientada%20a%20Objetos%202)| **2º Semestre** - 23.2 | [MazeGame](https://github.com/INE-UFSC/projeto-final-grupo-4-23-2)  |
 | INE5406 | [Sistemas Digitais](https://github.com/victoriavllso/UFSC/tree/main/Sistemas%20Digitais)| **2º Semestre** - 23.2 | [Módulo de convolução - filtro gaussiano](https://github.com/victoriavllso/UFSC/tree/main/Sistemas%20Digitais/Projeto%20Final) |
