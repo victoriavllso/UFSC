@@ -1,13 +1,12 @@
 import pygame
 from abc import ABC, abstractmethod
-from Engine.Structs.Sound import Sound
+
 
 class State(ABC):
     def __init__(self, setstatus,view) -> None:
         self.__view = view
         self.__setstatus = setstatus
-        self.__sound = Sound()
-        
+    
 
     @property
     def sound(self):

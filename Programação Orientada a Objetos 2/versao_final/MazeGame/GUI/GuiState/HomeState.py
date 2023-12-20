@@ -5,7 +5,7 @@ from Utils import*
 class HomeState(State):
     def __init__(self,setstatus,view):
       super().__init__(setstatus, view)
-      self.sound.game()
+   
 
 
 

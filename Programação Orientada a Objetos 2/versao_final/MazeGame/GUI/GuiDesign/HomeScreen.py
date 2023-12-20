@@ -9,6 +9,7 @@ class HomeScreen(ScreenBase):
     def __init__(self):
         super().__init__()
         self.initialize_screen()
+        self.resource_manager.get_sound(SOUND)
     
 
 

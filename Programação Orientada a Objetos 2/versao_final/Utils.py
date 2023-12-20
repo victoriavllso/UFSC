@@ -55,7 +55,5 @@ ROCK2 = 'Rock2.png'
 
 #### S
 
-SOUND_GAME = 'game_start.wav'
-SOUND_VICTORY = 'intermission.wav'
-SOUND_GAME_OVER = 'death_1.wav'
-SOUND_TEST = 'chiptune-grooving-142242.mp3'
+
+SOUND = 'chiptune-grooving-142242.mp3'

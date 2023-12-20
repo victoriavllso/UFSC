@@ -17,12 +17,11 @@ class GameState(State):
     if event == GameEvents.PLAYER_DIED:
       pygame.mixer.stop()
       self.setstatus.state('game_over')
-      self.sound.game_over()
+   
 
     elif event == GameEvents.FINISH:
-      pygame.mixer.stop()
       self.setstatus.state('ranking')
-      self.sound.victory()
+
 
     elif event == GameEvents.PAUSE:
       self.setstatus.state()
