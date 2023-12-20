@@ -1,9 +1,0 @@
-
-State Machine - |topo|sad_controle:controle|EstadoAtual
-Name EstadoAtual.S5 EstadoAtual.S4 EstadoAtual.S3 EstadoAtual.S2 EstadoAtual.S1 EstadoAtual.S0 
-EstadoAtual.S0 0 0 0 0 0 0 
-EstadoAtual.S1 0 0 0 0 1 1 
-EstadoAtual.S2 0 0 0 1 0 1 
-EstadoAtual.S3 0 0 1 0 0 1 
-EstadoAtual.S4 0 1 0 0 0 1 
-EstadoAtual.S5 1 0 0 0 0 1 
