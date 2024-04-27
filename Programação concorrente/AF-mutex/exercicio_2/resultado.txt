@@ -1,0 +1,12 @@
+Matriz 1
+1 7 
+8 7 
+
+Matriz 2
+9 4 
+1 8 
+
+Resultado 2
+16 60 
+79 88 
+
