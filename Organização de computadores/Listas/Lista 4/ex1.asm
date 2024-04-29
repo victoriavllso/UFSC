@@ -5,17 +5,7 @@
 	j: .word 0
 	f: .word 0
 .text
-j main
-calcula:
-	addi $sp, $sp, -4 #aumenta a pilha
-	sw $s1, 0($sp)	#armazenando s1
-	add $t1, $a0, $a1 #g+h
-	add $t2, $a2, $a3 #i+i
-	sub $s1, $t1, $t2 #(g+h) - (i+j)
-	move $v0, $s1	#move o resultado para o reg de retorno
-	lw  $s1, 0($sp) #restaura o registrador
-	addi $sp, $sp, 4 #limpa a pilha
-	jr $ra
+
 
 main:
 
@@ -43,7 +33,23 @@ main:
 	
 	jal calcula
 	
-	sw $v0, 0($s0) #armazena na memória
+	sw $v0, 0($s0) #armazena na memÃ³ria
+
+    li $v0, 10
+    syscall
+
+calcula:
+	addi $sp, $sp, -4 #aumenta a pilha
+	sw $s1, 0($sp)	#armazenando s1
+	add $t1, $a0, $a1 #g+h
+	add $t2, $a2, $a3 #i+i
+	sub $s1, $t1, $t2 #(g+h) - (i+j)
+	move $v0, $s1	#move o resultado para o reg de retorno
+	lw  $s1, 0($sp) #restaura o registrador
+	addi $sp, $sp, 4 #limpa a pilha
+	jr $ra
+
+
 	
 	
 	
