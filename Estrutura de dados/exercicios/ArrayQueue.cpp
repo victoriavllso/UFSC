@@ -5,7 +5,7 @@
 #include <cstdint>  // std::size_t
 #include <stdexcept>  // C++ Exceptions
 
-namespace structures {
+namespace structures { //IMPLEMENTAÇÃO CIRCULAR (MAIS EFICIENTE), SEM MOVIMENTAÇÃO DE DADOS
 
 template<typename T>
 //! classe ArrayQueue
@@ -93,7 +93,7 @@ T structures::ArrayQueue<T>::dequeue() {
     if (empty()) {
         throw std:: out_of_range("fila vazia !");
     }
-    T data = contents[begin_];
+    T data = contents[begin_]; //para retornar o dado do inicio
     begin_ = (begin_ + 1) % max_size_;
     size_--; //retiro um da quantidade atual
     return data;

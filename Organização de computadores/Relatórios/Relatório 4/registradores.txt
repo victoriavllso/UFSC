@@ -1,0 +1,8 @@
+#REGISTRADORES DA QUESTÃO E O QUE ESTÃO ARMAZENANDO
+
+sinal -> $f10
+seno -> $f2
+termo -> $f0
+temp -> $f12
+sinal negativp -> $f14
+n -> $t2

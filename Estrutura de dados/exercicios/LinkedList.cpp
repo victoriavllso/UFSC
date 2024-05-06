@@ -47,11 +47,11 @@ class LinkedList {
  private:
     class Node {  // Elemento (implementação pronta)
      public:
-        explicit Node(const T& data):
+        explicit Node(const T& data): //construtor com parametro dado
             data_{data}
         {}
 
-        Node(const T& data, Node* next):
+        Node(const T& data, Node* next): //construtor com parametro dado e proximo
             data_{data},
             next_{next}
         {}
@@ -101,7 +101,7 @@ class LinkedList {
 
 //! Construtor
 template<typename T>
-structures::LinkedList<T>::LinkedList() {
+structures::LinkedList<T>::LinkedList() { //construtor padrão
     head = nullptr;
     tail = nullptr;
     size_ = 0u;
@@ -109,7 +109,7 @@ structures::LinkedList<T>::LinkedList() {
 
 //! Destrutor
 template<typename T>
-structures::LinkedList<T>::~LinkedList() {
+structures::LinkedList<T>::~LinkedList() { //destrutor
     clear();
 }
 
@@ -129,8 +129,8 @@ void structures::LinkedList<T>::push_front(const T& data) {
     if (novo == nullptr) {
         throw std::out_of_range("memória insuficiente");
     }
-    if (head == nullptr) {
-        tail = novo;
+    if (head == nullptr) { //se a lista estiver vazia
+        tail = novo; // tanto head quando tail devem apontar para o novo nó
     }
     head = novo;
     size_++;
@@ -147,11 +147,10 @@ void structures::LinkedList<T>::push_back(const T& data) {
     if (novo == nullptr) {
         throw std::out_of_range("memória insuficiente");
     }
-    tail->next(novo);
-    tail = novo;
+    tail->next(novo); //faz o atual ultimo no apontar para o novo
+    tail = novo; //atualiza o ultimo nó
     size_++;
 }
-
 //! Dado da posição 'index'
 template<typename T>
 T& structures::LinkedList<T>::at(std::size_t index) {
@@ -217,7 +216,7 @@ T structures::LinkedList<T>::pop_front() {
     T aux;
     Node *p;
     p = head;
-    head = p->next();
+    head = p->next(); //atualiza a cabeça da lista para o segundo elemento (será o novo primeiro elemento)
     aux = p->data();
     delete p;
     if (head == nullptr) {
