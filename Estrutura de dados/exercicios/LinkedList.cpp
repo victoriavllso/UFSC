@@ -282,7 +282,8 @@ T structures::LinkedList<T>::pop(std::size_t index) {
     size_--;
     return aux;
 }
-
+[A,B,C,D,E,F]
+[F,E,D,C,B,A]
 //! Remoção de um dado
 template<typename T>
 void structures::LinkedList<T>::remove(const T& data) {
