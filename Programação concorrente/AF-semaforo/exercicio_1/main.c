@@ -32,7 +32,9 @@ void *thread_b(void *args) {
         fflush(stdout);
 
         sem_post(&sem_A);  // incrementa (no N) quantos A's podem ser impressos    }
+}
     return NULL;
+
 }
 
 int main(int argc, char** argv) {

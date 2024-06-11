@@ -1,3 +1,5 @@
+// Copyright [2024] <Victória Rodrigues Veloso>
+
 #include "array_list.h"
 
 namespace structures {
@@ -53,49 +55,6 @@ private:
                 }
             }
         }
-        Node *sucessor(Node *remover) {
-            Node *sucessor = remover->right;
-            while (sucessor -> left != nullptr) {
-                sucessor = sucessor ->left;
-            }
-            return sucessor;
-        }
-
-        bool remove(const T& data_) {
-            // COLOQUE SEU CÓDIGO AQUI... SE IMPLEMENTAÇÃO RECURSIVA
-        
-            if (data_ < data) {
-                if (left != nullptr) {
-                    return left->remove(data_);
-                } else {
-                    return false;
-                }
-            } else if (data_ > data) {
-                if (right !=nullptr) {
-                    return right->remove(data_);
-                } else {
-                    return false;
-                }
-            } else {
-                Node *filho = nullptr;
-                if (left == nullptr && right == nullptr) { //nó sem filhos
-                    delete this;  // isso funciona ? 
-                } else if (left == nullptr || right == nullptr) { // nó com filho a esquerda ou a direita
-                    filho = left != nullptr ? left : right;
-                    data = filho->data;
-                    left = nullptr;
-                    right = nullptr;
-                    delete filho;
-
-                } else {
-                    Node *suce = sucessor(this);
-                    data = suce->data;
-                    right->remove(suce->data);
-                }
-                return true;
-            }
-        }
-
         bool contains(const T& data_) const {
             if (data_ == data) {
                 return true;
@@ -113,7 +72,8 @@ private:
                 }
             }
         }
-        void pre_order(ArrayList<T>& v) const { //inicia a pesquisa pela raiz
+
+        void pre_order(ArrayList<T>& v) const {
             // COLOQUE SEU CÓDIGO AQUI...
             v.push_back(data);
             if (left != nullptr) {
@@ -124,7 +84,7 @@ private:
             }
         }
 
-        void in_order(ArrayList<T>& v) const { // inicia a pesquisa pela esquerda
+        void in_order(ArrayList<T>& v) const {
             // COLOQUE SEU CÓDIGO AQUI...
             if (left != nullptr) {
                 left->in_order(v);
@@ -135,7 +95,7 @@ private:
             }
         }
 
-        void post_order(ArrayList<T>& v) const { // inicia a pesquisa pela direita
+        void post_order(ArrayList<T>& v) const {
             // COLOQUE SEU CÓDIGO AQUI...
             if (left != nullptr) {
                 left->post_order(v);
@@ -191,12 +151,77 @@ void structures::BinaryTree<T>::insert(const T& data) {
 
 template<typename T>
 void structures::BinaryTree<T>::remove(const T& data) {
-    // COLOQUE SEU CÓDIGO AQUI...
-    if (root != nullptr) {
-        root->remove(data);
+        if (root == nullptr) {
+            return;
+        }
+
+        Node* current = root;
+        Node* parent = nullptr;
+
+        while (current != nullptr && current->data != data) {
+            parent = current;
+            if (data < current->data) {
+                current = current->left;
+            } else {
+                current = current->right;
+            }
+        }
+
+        if (current == nullptr) {
+            return;
+        }
+
+        // Caso 1: Node não tem filhos
+        if (current->left == nullptr && current->right == nullptr) {
+            if (current == root) {
+                root = nullptr;
+            } else if (current == parent->left) {
+                parent->left = nullptr;
+            } else {
+                parent->right = nullptr;
+            }
+            delete current;
+        } else if (current->left == nullptr) {
+            // Caso 2: Node tem apenas 1 filho
+            if (current == root) {
+                root = current->right;
+            } else if (current == parent->left) {
+                parent->left = current->right;
+            } else {
+                parent->right = current->right;
+            }
+            delete current;
+        } else if (current->right == nullptr) {
+            if (current == root) {
+                root = current->left;
+            } else if (current == parent->left) {
+                parent->left = current->left;
+            } else {
+                parent->right = current->left;
+            }
+            delete current;
+        } else {  // Case 3: Node tem 2 filhos
+            Node* successor = current->right;
+            Node* successorParent = current;
+
+            while (successor->left != nullptr) {
+                successorParent = successor;
+                successor = successor->left;
+            }
+
+            current->data = successor->data;
+
+            if (successor == successorParent->left) {
+                successorParent->left = successor->right;
+            } else {
+                successorParent->right = successor->right;
+            }
+
+            delete successor;
+        }
+
+        size_--;
     }
-    size_--;
-}
 
 template<typename T>
 bool structures::BinaryTree<T>::empty() const {

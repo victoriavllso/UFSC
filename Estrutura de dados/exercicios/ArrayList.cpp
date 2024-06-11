@@ -1,5 +1,4 @@
-/ Copyright [year] <Copyright Owner>
-
+// Copyright [2024]
 #ifndef STRUCTURES_ARRAY_LIST_H
 #define STRUCTURES_ARRAY_LIST_H
 
@@ -50,14 +49,14 @@ class ArrayList {
 
 //-------------------------------------
 
-template<typename T> //construtor padrao
+template<typename T>
 structures::ArrayList<T>::ArrayList() {
     max_size_ = DEFAULT_MAX;
     contents = new T[max_size_];
     size_ = 0;
 }
 
-template<typename T> //consturotr com parametro
+template<typename T>
 structures::ArrayList<T>::ArrayList(std::size_t max_size) {
     max_size_ = max_size;
     contents = new T[max_size_];
@@ -86,44 +85,38 @@ void structures::ArrayList<T>::push_front(const T& data) {
 
 template<typename T>
 void structures::ArrayList<T>::insert(const T& data, std::size_t index) {
-    // COLOQUE SEU CODIGO AQUI...
-        if (full()) {
-        throw std::out_of_range("Lista cheia !");
+    if (index > size()) {
+        throw std::out_of_range("invalid index");
     }
-    if (index <= size()) { //verifica se o indice é valido
-        for (std::size_t i = size(); i > index; i--) { //desloca os elementos para a direita
-            contents[i] = contents[i-1];
-        }
-        contents[index] = data;
-        size_++;
-    } else {
-        throw std::out_of_range("Índice fora dos limites !");
+    if (full()) {
+        throw std::out_of_range("full list");
     }
+    for (std::size_t i = size(); i > index; i--) {
+        contents[i] = contents[i-1];
+    }
+    contents[index] = data;
+    size_++;
 }
+
 template<typename T>
 void structures::ArrayList<T>::insert_sorted(const T& data) {
-    // COLOQUE SEU CODIGO AQUI...
-        if (full()) {
-        throw std::out_of_range("Lista cheia !");
-    }
-    std::size_t i = 0;
-    while (i < size() && data > contents[i]) { //percorre a lista e verifica se o dado fornecido é maior que o dado na posição atual (i) da lista
-    i++; //incrementa e repete o loop até encontrar o dado que é menor que o fornecido
+    std::size_t i;
+    for (i = 0; i < size() && contents[i] < data; i++) {
+        continue;
     }
     insert(data, i);
-    }
+}
 
 template<typename T>
 T structures::ArrayList<T>::pop(std::size_t index) {
-    // COLOQUE SEU CODIGO AQUI...
     if (empty()) {
-        throw std::out_of_range("Lista vazia !");
+        throw std::out_of_range("empty list");
     } else if (index >= size()) {
-        throw std::out_of_range("index out of range !");
+        throw std::out_of_range("invalid index");
     }
     T aux = contents[index];
-    for (std::size_t i  = index+1; i < size(); i++) {
-        contents[i-1] = contents[i]; //desloca os elementos para a esquerda a partir da posição index
+    for (std::size_t i = index+1; i < size(); i++) {
+        contents[i-1] = contents[i];
     }
     size_--;
     return aux;
@@ -131,35 +124,35 @@ T structures::ArrayList<T>::pop(std::size_t index) {
 
 template<typename T>
 T structures::ArrayList<T>::pop_back() {
-    // COLOQUE SEU CODIGO AQUI...
-    return pop(size()-1);
+    T aux = pop(size()-1);
+    return aux;
 }
 
 template<typename T>
 T structures::ArrayList<T>::pop_front() {
-    // COLOQUE SEU CODIGO AQUI...
-    return pop(0);
+    if (empty()) {
+        throw std::out_of_range("empty list");}
+    T aux = contents[0];
+    for (std::size_t i = 1; i < size(); i++) {
+        contents[i-1] = contents[i];
+    }
+    size_--;
+    return aux;
 }
 
 template<typename T>
 void structures::ArrayList<T>::remove(const T& data) {
-    // COLOQUE SEU CODIGO AQUI...
-    if (empty()) {
-        throw std::out_of_range("Lista vazia !");
-    }
-    std::size_t i  = 0;
-    while (i < size_ && contents[i] != data) {
-        i++;
-    }
-    if (i < size_) {
-        pop(i);
+    for (std::size_t i = 0; i < size() ; i++) {
+        if (contents[i] == data) {
+            pop(i);
+            break;
+        }
     }
 }
 
 template<typename T>
 bool structures::ArrayList<T>::empty() const {
-    // COLOQUE SEU CODIGO AQUI...
-    return size() == 0;
+    return (size() == 0);
 }
 
 template<typename T>
@@ -174,9 +167,8 @@ bool structures::ArrayList<T>::contains(const T& data) const {
 }
 
 template<typename T>
-std::size_t structures::ArrayList<T>::find(const T& data) const { //retorna a posição do dado fornecido
-    // COLOQUE SEU CODIGO AQUI...
-    for (std::size_t i = 0; i < size(); i++) {
+std::size_t structures::ArrayList<T>::find(const T& data) const {
+    for (std::size_t i = 0; i < size() ; i++) {
         if (contents[i] == data) {
             return i;
         }
@@ -195,7 +187,7 @@ std::size_t structures::ArrayList<T>::max_size() const {
 }
 
 template<typename T>
-T& structures::ArrayList<T>::at(std::size_t index) { //retorna o dado na posição index
+T& structures::ArrayList<T>::at(std::size_t index) {
     if (empty()) {
         throw std::out_of_range("empty list");
     } else if (index >= size()) {
@@ -206,7 +198,6 @@ T& structures::ArrayList<T>::at(std::size_t index) { //retorna o dado na posiç�
 
 template<typename T>
 T& structures::ArrayList<T>::operator[](std::size_t index) {
-    // COLOQUE SEU CODIGO AQUI...
     return contents[index];
 }
 
@@ -218,7 +209,6 @@ const T& structures::ArrayList<T>::at(std::size_t index) const {
 
 template<typename T>
 const T& structures::ArrayList<T>::operator[](std::size_t index) const {
-    // COLOQUE SEU CODIGO AQUI...
-    const T aux = contents[index];
+    const T aux = at(index);
     return aux;
 }
