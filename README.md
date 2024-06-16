@@ -10,7 +10,7 @@ Este repositório abriga os códigos e projetos que desenvolvi ao longo do meu c
 | INE5404 | [Programação Orientada a Objetos II](https://github.com/victoriavllso/UFSC/tree/main/Programa%C3%A7%C3%A3o%20Orientada%20a%20Objetos%202)| **2º Semestre** - 23.2 | [MazeGame](https://github.com/victoriavllso/UFSC/tree/main/Programa%C3%A7%C3%A3o%20Orientada%20a%20Objetos%202/versao_final)  |
 | INE5406 | [Sistemas Digitais](https://github.com/victoriavllso/UFSC/tree/main/Sistemas%20Digitais)| **2º Semestre** - 23.2 | [Módulo de convolução - filtro gaussiano](https://github.com/victoriavllso/UFSC/tree/main/Sistemas%20Digitais/Projeto%20Final) |
 | INE5202 | [Cálculo numérico em computadores](https://github.com/victoriavllso/UFSC/tree/main/C%C3%A1lculo%20num%C3%A9rico%20em%20computadores) | **2º Semestre** - 23.2 | 
-| INE5411 | [Organização de computadores](https://github.com/victoriavllso/UFSC/tree/main/Organiza%C3%A7%C3%A3o%20de%20computadores)| **3º Semestre** - 24.1 |  |
+| INE5411 | [Organização de computadores](https://github.com/victoriavllso/UFSC/tree/main/Organiza%C3%A7%C3%A3o%20de%20computadores)| **3º Semestre** - 24.1 | [Métodos iterativos utilizando procedimentos recursivos (stack)](https://github.com/victoriavllso/UFSC/tree/main/Organiza%C3%A7%C3%A3o%20de%20computadores/Relat%C3%B3rios/Relat%C3%B3rio%204) |
 | INE5408 | [Estrutura de dados](https://github.com/victoriavllso/UFSC/tree/main/Estrutura%20de%20dados) | **3º Semestre** - 24.1 | [Busca de prefixos em um dicionário](https://github.com/victoriavllso/UFSC/tree/main/Estrutura%20de%20dados/projeto)
 | INE5410 | [Programação concorrente](https://github.com/victoriavllso/UFSC/tree/main/Programa%C3%A7%C3%A3o%20concorrente) | **3º Semestre** - 24.1 | [Parallel-Park]()
 
