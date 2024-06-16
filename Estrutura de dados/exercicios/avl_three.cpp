@@ -1,25 +1,26 @@
-// Copyright [2024] <Victória Rodrigues Veloso>
-
+//! Copyright [2024] <Victória Rodrigues Veloso>
+#include <algorithm>
 #include "array_list.h"
+
 
 namespace structures {
 
 template<typename T>
-class BinaryTree {
+class AVLTree {
 public:
-    BinaryTree();
-
-    ~BinaryTree();
+    AVLTree() : root(nullptr), size_(0) {}
+    ~AVLTree() {
+        delete root;
+    }
 
     void insert(const T& data);
-
     void remove(const T& data);
-
     bool contains(const T& data) const;
-
     bool empty() const;
-
     std::size_t size() const;
+    int height() const {
+        return root ? root->height() : 0;
+    }
 
     ArrayList<T> pre_order() const;
 
@@ -27,54 +28,147 @@ public:
 
     ArrayList<T> post_order() const;
 
-private:
+ private:
     struct Node {
         explicit Node(const T& data_) {
             data = data_;
+            height_ = 0;
+            left = nullptr;
+            right = nullptr;
+            parent = nullptr;
+        }
+
+        ~Node() {
             left = nullptr;
             right = nullptr;
         }
 
         T data;
+        int height_;
         Node* left;
         Node* right;
+        Node* parent;
 
-        void insert(const T& data_) {
-            // COLOQUE SEU CÓDIGO AQUI... SE IMPLEMENTAÇÃO RECURSIVA
+        int height() {
+            return height_;
+        }
+
+        int balance_factor() const {
+            int left_height = left ? left->height() : -1;
+            int right_height = right ? right->height() : -1;
+            return left_height - right_height;
+        }
+
+        void updateHeight() {
+            int left_height = left ? left->height() : -1;
+            int right_height = right ? right->height() : -1;
+            height_ = std::max(left_height, right_height) + 1;
+        }
+
+        Node* simpleLeft() {
+            Node* new_root = right;
+            right = new_root->left;
+            if (new_root->left) new_root->left->parent = this;
+            new_root->left = this;
+            new_root->parent = parent;
+            parent = new_root;
+
+            updateHeight();
+            new_root->updateHeight();
+            return new_root;
+        }
+
+        Node* simpleRight() {
+            Node* new_root = left;
+            left = new_root->right;
+            if (new_root->right) new_root->right->parent = this;
+            new_root->right = this;
+            new_root->parent = parent;
+            parent = new_root;
+
+            updateHeight();
+            new_root->updateHeight();
+            return new_root;
+        }
+
+        Node* balance() {
+            updateHeight();
+            if (balance_factor() > 1) {
+                if (left && left->balance_factor() < 0) {
+                    left = left->simpleLeft();
+                }
+                return simpleRight();
+            } else if (balance_factor() < -1) {
+                if (right && right->balance_factor() > 0) {
+                    right = right->simpleRight();
+                }
+                return simpleLeft();
+            }
+            return this;
+        }
+
+        Node* insert(const T& data_) {
             if (data_ < data) {
-                if (left == nullptr) {
-                    left = new Node(data_);
+                if (left) {
+                    left = left->insert(data_);
+                    left->parent = this;
                 } else {
-                    left->insert(data_);
+                    left = new Node(data_);
+                    left->parent = this;
+                }
+            } else if (data_ > data) {
+                if (right) {
+                    right = right->insert(data_);
+                    right->parent = this;
+                } else {
+                    right = new Node(data_);
+                    right->parent = this;
+                }
+            }
+            return balance();
+        }
+
+        Node* find_minimum() {
+            return left ? left->find_minimum() : this;
+        }
+
+        Node* remove_minimum() {
+            if (!left) return right;
+            left = left->remove_minimum();
+            return balance();
+        }
+
+        Node* remove(const T& data_) {
+            if (data_ < data) {
+                if (left) {
+                    left = left->remove(data_);
+                }
+            } else if (data_ > data) {
+                if (right) {
+                    right = right->remove(data_);
                 }
             } else {
-                if (right == nullptr) {
-                    right = new Node(data_);
-                } else {
-                    right->insert(data_);
-                }
+                Node* left_child = left;
+                Node* right_child = right;
+                delete this;
+                if (!right_child) return left_child;
+                Node* min = right_child->find_minimum();
+                min->right = right_child->remove_minimum();
+                if (min->right) min->right->parent = min;
+                min->left = left_child;
+                if (min->left) min->left->parent = min;
+                return min->balance();
             }
+            return balance();
         }
+
         bool contains(const T& data_) const {
-            if (data_ == data) {
-                return true;
-            } else if (data_ < data) {
-                if (left != nullptr) {
-                    return left->contains(data_);
-                } else {
-                    return false;
-                }
-            } else {  // data_ > data
-                if (right != nullptr) {
-                    return right->contains(data_);
-                } else {
-                    return false;
-                }
-            }
+            if (data_ == data) return true;
+            if (data_ < data) return left ? left->contains(data_) : false;
+            return right ? right->contains(data_) : false;
         }
 
         void pre_order(ArrayList<T>& v) const {
-            // COLOQUE SEU CÓDIGO AQUI...
             v.push_back(data);
             if (left != nullptr) {
                 left->pre_order(v);
@@ -85,7 +179,6 @@ private:
         }
 
         void in_order(ArrayList<T>& v) const {
-            // COLOQUE SEU CÓDIGO AQUI...
             if (left != nullptr) {
                 left->in_order(v);
             }
@@ -96,7 +189,6 @@ private:
         }
 
         void post_order(ArrayList<T>& v) const {
-            // COLOQUE SEU CÓDIGO AQUI...
             if (left != nullptr) {
                 left->post_order(v);
             }
@@ -113,129 +205,41 @@ private:
 
 }  // namespace structures
 
-//-------------------------------------
-
 template<typename T>
-structures::BinaryTree<T>::BinaryTree() {
-    root = nullptr;
-    size_ = 0;
+void structures::AVLTree<T>::insert(const T& data) {
+    if (!root) {
+        root = new Node(data);
+    } else {
+        root = root->insert(data);
+    }
+    size_++;
 }
-
 template<typename T>
-structures::BinaryTree<T>::~BinaryTree() {
-    // COLOQUE SEU CÓDIGO AQUI...
-    root = nullptr;
-    size_ = 0;
-}
-
+void structures::AVLTree<T>::remove(const T& data) {
+    if (root) {
+        root = root->remove(data);
+        size_--;
+        }
+    }
 template<typename T>
-bool structures::BinaryTree<T>::contains(const T& data) const {
+bool structures::AVLTree<T>::contains(const T& data) const {
     if (root != nullptr) {
         return root->contains(data);
     } else {
         return false;
     }
 }
-
 template<typename T>
-void structures::BinaryTree<T>::insert(const T& data) {
-    // COLOQUE SEU CÓDIGO AQUI...
-    Node *novo = new Node(data);
-    if (root == nullptr) {
-        root = novo;
-    } else {
-        root->insert(data);
-    }
-    size_++;
-}
-
-template<typename T>
-void structures::BinaryTree<T>::remove(const T& data) {
-        if (root == nullptr) {
-            return;
-        }
-
-        Node* current = root;
-        Node* parent = nullptr;
-
-        while (current != nullptr && current->data != data) {
-            parent = current;
-            if (data < current->data) {
-                current = current->left;
-            } else {
-                current = current->right;
-            }
-        }
-
-        if (current == nullptr) {
-            return;
-        }
-
-        // Caso 1: Node não tem filhos
-        if (current->left == nullptr && current->right == nullptr) {
-            if (current == root) {
-                root = nullptr;
-            } else if (current == parent->left) {
-                parent->left = nullptr;
-            } else {
-                parent->right = nullptr;
-            }
-            delete current;
-        } else if (current->left == nullptr) {
-            // Caso 2: Node tem apenas 1 filho
-            if (current == root) {
-                root = current->right;
-            } else if (current == parent->left) {
-                parent->left = current->right;
-            } else {
-                parent->right = current->right;
-            }
-            delete current;
-        } else if (current->right == nullptr) {
-            if (current == root) {
-                root = current->left;
-            } else if (current == parent->left) {
-                parent->left = current->left;
-            } else {
-                parent->right = current->left;
-            }
-            delete current;
-        } else {  // Case 3: Node tem 2 filhos
-            Node* successor = current->right;
-            Node* successorParent = current;
-
-            while (successor->left != nullptr) {
-                successorParent = successor;
-                successor = successor->left;
-            }
-
-            current->data = successor->data;
-
-            if (successor == successorParent->left) {
-                successorParent->left = successor->right;
-            } else {
-                successorParent->right = successor->right;
-            }
-
-            delete successor;
-        }
-
-        size_--;
-    }
-
-template<typename T>
-bool structures::BinaryTree<T>::empty() const {
+bool structures::AVLTree<T>::empty() const {
     return size() == 0;
 }
 
 template<typename T>
-std::size_t structures::BinaryTree<T>::size() const {
-    // COLOQUE SEU CÓDIGO AQUI...
+std::size_t structures::AVLTree<T>::size() const {
     return size_;
 }
-
 template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::pre_order() const {
+structures::ArrayList<T> structures::AVLTree<T>::pre_order() const {
     structures::ArrayList<T> L;
 	if (root != nullptr) {
 		root->pre_order(L);
@@ -244,7 +248,7 @@ structures::ArrayList<T> structures::BinaryTree<T>::pre_order() const {
 }
 
 template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::in_order() const {
+structures::ArrayList<T> structures::AVLTree<T>::in_order() const {
     // COLOQUE SEU CÓDIGO AQUI...
     structures::ArrayList<T> L;
     if (root != nullptr) {
@@ -254,7 +258,7 @@ structures::ArrayList<T> structures::BinaryTree<T>::in_order() const {
 }
 
 template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::post_order() const {
+structures::ArrayList<T> structures::AVLTree<T>::post_order() const {
     // COLOQUE SEU CÓDIGO AQUI...
     structures::ArrayList<T> L;
     if (root != nullptr) {
