@@ -1,0 +1,23 @@
+menor :: [Int] -> Int
+menor [] = error "Lista vazia"
+menor [a] = a -- caso base
+menor (a:b) | (a < menorRestante) = a
+            | otherwise = menorRestante
+            
+            where
+                menorRestante = menor b
+maior :: [Int] -> Int
+maior [] = error "Lista vazia"
+maior [a] = a
+maior (a:b) | (a > maiorRestante) = a
+            | otherwise = maiorRestante
+            
+            where
+            maiorRestante = maior b
+            
+diferencaMaiorMenor :: [Int] -> Int
+diferencaMaiorMenor [] = 0 
+diferencaMaiorMenor lista = (maior lista) - (menor lista)
+
+main = do
+    print(diferencaMaiorMenor [60,3,80,1,7])
