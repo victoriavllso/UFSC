@@ -1,0 +1,6 @@
+Curiosidade: O "Bug" no Computador que Deu Origem ao Termo
+O termo "bug", amplamente usado na computação para descrever erros em softwares ou sistemas, tem uma origem curiosa e literal! Em 9 de setembro de 1947, engenheiros trabalhando no computador Mark II na Universidade de Harvard encontraram uma falha inesperada em um dos relés eletromecânicos da máquina. Ao investigarem, descobriram que uma mariposa (literalmente um inseto) havia ficado presa no equipamento, causando mau funcionamento.
+
+Eles registraram o evento em seu diário de laboratório, colando a mariposa na página e anotando: "First actual case of bug being found" (Primeiro caso real de um "bug" encontrado). Desde então, o termo se popularizou na computação, embora "bug" já fosse usado anteriormente em engenharia para descrever problemas técnicos.
+
+Hoje, quando falamos em debugging, estamos literalmente "removendo bugs" do software, em uma homenagem inadvertida àquele incidente com a mariposa. A documentação original desse evento, com a mariposa colada, está preservada no Museu Smithsonian! 
